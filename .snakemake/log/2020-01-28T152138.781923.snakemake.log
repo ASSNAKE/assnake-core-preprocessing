@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	24	count
+	24
+
+[Tue Jan 28 15:21:38 2020]
+rule count:
+    input: /mnt/c/Users/dtuma/Github/mg_test/reads/raw/p153N_R1.fastq.gz
+    output: /mnt/c/Users/dtuma/Github/mg_test/profile/raw/p153N/p153N_R1.count
+    jobid: 12
+    wildcards: fs_prefix=/mnt/c/Users/dtuma/Github, df=mg_test, preproc=raw, sample=p153N, strand=R1
+
+[Tue Jan 28 15:21:38 2020]
+rule count:
+    input: /mnt/c/Users/dtuma/Github/mg_test/reads/raw/p143N_R1.fastq.gz
+    output: /mnt/c/Users/dtuma/Github/mg_test/profile/raw/p143N/p143N_R1.count
+    jobid: 22
+    wildcards: fs_prefix=/mnt/c/Users/dtuma/Github, df=mg_test, preproc=raw, sample=p143N, strand=R1
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/c/Users/dtuma/Github/assnake-core-preprocessing/.snakemake/log/2020-01-28T152138.781923.snakemake.log

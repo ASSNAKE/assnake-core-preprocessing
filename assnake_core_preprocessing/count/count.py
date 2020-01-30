@@ -6,7 +6,7 @@ rule count:
     wildcard_constraints:    
         df="[\w\d_-]+"
     run:
-        exec_loc = os.path.join(config['assnake-core-preprocessing'],'./count/count_bp.sh')
+        exec_loc = os.path.join(config['assnake-core-preprocessing'],'count/count_bp.sh')
         shell('''bash {exec_loc} {input.r1} > {output.r1}''')
 
         #save_to_db(config['task_id'], rule, str(input), str(output.r1), 'RUN SUCCESSFUL')
