@@ -1,10 +1,8 @@
-print('bp0')
 import os
 from assnake.api.snake_module import SnakeModule
 from assnake_core_preprocessing.count.cmd_count import count_invocation
 from assnake_core_preprocessing.trimmomatic.cmd_trimmomatic import trimmomatic_invocation
 from assnake.utils import read_yaml
-print('bp1')
 this_dir = os.path.dirname(os.path.abspath(__file__))
 snake_module = SnakeModule(name = 'assnake-core-preprocessing', 
                            install_dir = this_dir,

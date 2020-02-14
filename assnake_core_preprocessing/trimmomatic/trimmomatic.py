@@ -18,4 +18,3 @@ rule tmtic:
     conda: 'env_0.38.yaml'
     wrapper: "file://"+os.path.join(config['assnake-core-preprocessing'], 'trimmomatic/wrapper.py')
         
-print('including megahit')
