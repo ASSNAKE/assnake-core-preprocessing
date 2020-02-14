@@ -1,0 +1,1 @@
+rm_hm_bbmap: '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}_R1.fastq.gz'
