@@ -15,7 +15,7 @@ import click
 
 @click.pass_obj
 
-def cli(config, df, preproc, samples_to_add):
+def fastqc_start(config, df, preproc, samples_to_add):
     samples_to_add = [] if samples_to_add == '' else [c.strip() for c in samples_to_add.split(',')]
     df = assnake.api.loaders.load_df_from_db(df)
     ss = assnake.api.sample_set.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)

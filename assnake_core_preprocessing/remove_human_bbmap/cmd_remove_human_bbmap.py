@@ -27,7 +27,7 @@ def remove_human_bbmap(config, df, preproc, samples_to_add):
 
     for s in ss.samples_pd.to_dict(orient='records'):
         preprocessing = s['preproc']
-        res_list.append(config['wc_config']['rm_hm_bbmap'].format(
+        res_list.append( '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}_R1.fastq.gz'.format(
             fs_prefix = s['fs_prefix'].rstrip('\/'),
             df = s['df'],
             preproc = preprocessing,
