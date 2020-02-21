@@ -1,0 +1,3 @@
+multiqc_report_wc : '{fs_prefix}/{df}/multiqc/{sample_set}/{strand}/multiqc_report.html'
+sample_list_wc: '{fs_prefix}/{df}/multiqc/{sample_set}/{strand}/samples.list'
+work_dir_wc: '{fs_prefix}/{df}/multiqc/{sample_set}/{strand}/'
