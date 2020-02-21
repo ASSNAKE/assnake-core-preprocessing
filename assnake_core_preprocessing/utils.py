@@ -6,8 +6,9 @@ import os
 
 def format_cmdinp2obj(samples_to_add, preproc, df, config):
     samples_to_add = [] if samples_to_add == '' else [c.strip() for c in samples_to_add.split(',')]
+    print(samples_to_add)
     df_loaded = assnake.api.loaders.load_df_from_db(df)
-    config['requested_dfs'] += df_loaded['df']
+    config['requested_dfs'] += [df_loaded['df']]
     SampleSetObj = assnake.api.sample_set.SampleSet(df_loaded['fs_prefix'], df_loaded['df'], preproc,
                                           samples_to_add=samples_to_add)
 
