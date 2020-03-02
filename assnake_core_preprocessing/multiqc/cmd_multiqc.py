@@ -13,7 +13,7 @@ from pathlib import Path
               default='',
               metavar='<samples_to_add>',
               type=click.STRING)
-@click.option('--set-name', '-n', help='Name of the set', required=False, type=click.STRING )
+@click.option('--set-name', '-n', help='Name of the set', default='', type=click.STRING )
 @click.pass_obj
 # DONE <opt parameter>
 # DONE format line 31;pass to res_list
