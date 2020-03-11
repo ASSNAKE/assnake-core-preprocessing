@@ -18,3 +18,4 @@ rule tmtic:
     conda: 'env_0.38.yaml'
     wrapper: "file://"+os.path.join(config['assnake-core-preprocessing'], 'trimmomatic/wrapper.py')
         
+# 3:22 - start conda env installation; 4 minutes total

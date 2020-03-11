@@ -1,6 +1,6 @@
 def get_fastqc_files_for_multiqc(wildcards):
     fastqc_files = []
-    with open('{fs_prefix}/{df}/multiqc/{sample_set}/{strand}/samples.list'.format(**wildcards), 'r') as sample_list:
+    with open('{fs_prefix}/{df}/profile/multiqc/{sample_set}/{strand}/samples.list'.format(**wildcards), 'r') as sample_list:
         fastqc_files = [s.strip() for s in sample_list.readlines()]
     return fastqc_files
 

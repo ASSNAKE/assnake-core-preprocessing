@@ -8,6 +8,11 @@ from pathlib import Path
 @click.command('multiqc', short_help='Forming the multiqc report')
 @click.option('--df', '-d', help='Name of the dataset', required=True)
 @click.option('--preproc', '-p', help='Preprocessing to use')
+
+@click.option('--meta-column', '-c', help='Select samples based on metadata column' )
+@click.option('--column-value','-v', help='Value of metadata column by which select samples' )
+
+
 @click.option('--samples-to-add', '-s',
               help='Samples from dataset to process',
               default='',
@@ -15,17 +20,20 @@ from pathlib import Path
               type=click.STRING)
 @click.option('--set-name', '-n', help='Name of the set', default='', type=click.STRING )
 @click.pass_obj
-# DONE <opt parameter>
-# DONE format line 31;pass to res_list
-# TODO 22-29 to function, plus result_wc in signature; plus how-to format in signature : options [sample, sample_file, custom].
 
-def multiqc_invocation(config, df, preproc, samples_to_add, set_name):
+
+def multiqc_invocation(config, df, preproc, meta_column, column_value, samples_to_add, set_name):
     multiqc_report_wc = read_yaml( Path(__file__).parent.absolute() / 'wc_config.yaml' )['multiqc_report_wc']
-    ss, df_loaded = format_cmdinp2obj(samples_to_add=samples_to_add, config=config, preproc=preproc, df=df)
+    ss, df_loaded = format_cmdinp2obj(config, df, preproc, meta_column, column_value, samples_to_add)
+
     if set_name == '':
-        curr_date = datetime.datetime.now()
-        def_name = '{df}_{preproc}_{month}{year}'.format(df=df, preproc=preproc, month=curr_date.strftime("%b"), year=curr_date.strftime("%y"))
-        set_name = def_name
+        if meta_column is None and column_value is None:
+            curr_date = datetime.datetime.now()
+            def_name = '{df}_{preproc}_{month}{year}'.format(df=df, preproc=preproc, month=curr_date.strftime("%b"), year=curr_date.strftime("%y"))
+            set_name = def_name
+        else:
+            set_name = meta_column + '__' + column_value
+            
     prepare_fastqc_list_multiqc(sample_setObj=ss, set_name=set_name, strand='R1')
     prepare_fastqc_list_multiqc(sample_setObj=ss, set_name=set_name, strand='R2')
 
