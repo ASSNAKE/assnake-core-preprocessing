@@ -12,11 +12,18 @@ import click
                 default='', 
                 metavar='<samples_to_add>', 
                 type=click.STRING )
+@click.option('--exclude-samples','-x', 
+                help='Exclude this samples from run', 
+                default='', 
+                metavar='<samples_to_add>', 
+                type=click.STRING )
 
 @click.pass_obj
 
-def remove_human_bbmap(config, df, preproc, samples_to_add):
+def remove_human_bbmap(config, df, preproc, samples_to_add, exclude_samples):
     samples_to_add = [] if samples_to_add == '' else [c.strip() for c in samples_to_add.split(',')]
+    exclude_samples = [] if exclude_samples == '' else [c.strip() for c in exclude_samples.split(',')]
+
     df = assnake.api.loaders.load_df_from_db(df)
     config['requested_dfs'] += [df['df']]
     ss = assnake.api.sample_set.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
@@ -25,6 +32,8 @@ def remove_human_bbmap(config, df, preproc, samples_to_add):
         headers='keys', tablefmt='fancy_grid'))
     res_list = []
 
+    if len(exclude_samples) > 0 :  
+        ss.samples_pd = ss.samples_pd.loc[~ss.samples_pd['fs_name'].isin(exclude_samples), ]
     for s in ss.samples_pd.to_dict(orient='records'):
         preprocessing = s['preproc']
         res_list.append( '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}_R1.fastq.gz'.format(
