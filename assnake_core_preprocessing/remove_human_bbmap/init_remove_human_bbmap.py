@@ -1,5 +1,5 @@
 import assnake.api.loaders
-import assnake.api.sample_set
+import assnake
 from tabulate import tabulate
 import click
 

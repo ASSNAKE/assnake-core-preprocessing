@@ -1,5 +1,5 @@
 import assnake.api.loaders
-import assnake.api.sample_set
+import assnake
 from tabulate import tabulate
 import click, os
 import pandas as pd
@@ -35,7 +35,7 @@ def count_invocation(config, df, preproc, meta_column, column_value, samples_to_
 
     
 
-    ss = assnake.api.sample_set.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
+    ss = assnake.SampleSet.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
     config['requested_dfs'] += [df['df']] 
 
     click.echo(tabulate(ss.samples_pd[['fs_name', 'reads', 'preproc']].sort_values('reads'), headers='keys', tablefmt='fancy_grid'))

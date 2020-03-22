@@ -1,5 +1,5 @@
 import assnake.api.loaders
-import assnake.api.sample_set
+import assnake
 from tabulate import tabulate
 import click
 
@@ -26,7 +26,7 @@ def remove_human_bbmap(config, df, preproc, samples_to_add, exclude_samples):
 
     df = assnake.api.loaders.load_df_from_db(df)
     config['requested_dfs'] += [df['df']]
-    ss = assnake.api.sample_set.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
+    ss = assnake.SampleSet.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
 
     click.echo(tabulate(ss.samples_pd[['fs_name', 'reads', 'preproc']].sort_values('reads'), 
         headers='keys', tablefmt='fancy_grid'))

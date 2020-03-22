@@ -1,5 +1,5 @@
 import assnake.api.loaders
-import assnake.api.sample_set
+import assnake
 from tabulate import tabulate
 import click
 import os
@@ -21,7 +21,7 @@ def format_cmdinp2obj(config, df, preproc, meta_column, column_value, samples_to
                 samples_to_add = list(subset_by_col_value['new_sample_name'])
 
 
-    SampleSetObj = assnake.api.sample_set.SampleSet(df_loaded['fs_prefix'], df_loaded['df'], preproc,
+    SampleSetObj = assnake.SampleSet.SampleSet(df_loaded['fs_prefix'], df_loaded['df'], preproc,
                                           samples_to_add=samples_to_add)
 
     click.echo(tabulate(SampleSetObj.samples_pd[['fs_name', 'reads', 'preproc']].sort_values('reads'),

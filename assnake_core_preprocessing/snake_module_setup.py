@@ -1,5 +1,5 @@
 import os
-from assnake.api.snake_module import SnakeModule
+import assnake
 from assnake_core_preprocessing.count.cmd_count import count_invocation
 from assnake_core_preprocessing.trimmomatic.cmd_trimmomatic import trimmomatic_invocation
 from assnake_core_preprocessing.remove_human_bbmap.init_remove_human_bbmap import init_remove_human_bbmap
@@ -9,7 +9,7 @@ from assnake_core_preprocessing.multiqc.cmd_multiqc import multiqc_invocation
 from assnake_core_preprocessing.fastqc.cmd_fastqc import fastqc_start
 from assnake.utils import read_yaml
 this_dir = os.path.dirname(os.path.abspath(__file__))
-snake_module = SnakeModule(name = 'assnake-core-preprocessing', 
+snake_module = assnake.SnakeModule(name = 'assnake-core-preprocessing', 
                            install_dir = this_dir,
                            snakefiles = ['./count/count.py', 
                             './trimmomatic/trimmomatic.py',
