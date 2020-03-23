@@ -2,28 +2,21 @@ import assnake.api.loaders
 import assnake
 from tabulate import tabulate
 import click
+from assnake.cli.cli_utils import sample_set_construction_options, add_options, generic_command_individual_samples, generate_result_list
+import os, datetime 
+import pandas as pd
 
 @click.command('fastqc', short_help='Fastqc - quality control checks on raw sequence data')
-
-@click.option('--df','-d', help='Name of the dataset', required=True )
-@click.option('--preproc','-p', help='Preprocessing to use' )
-@click.option('--samples-to-add','-s', 
-                help='Samples from dataset to process', 
-                default='', 
-                metavar='<samples_to_add>', 
-                type=click.STRING )
+@add_options(sample_set_construction_options)
 
 @click.pass_obj
 
-def fastqc_start(config, df, preproc, samples_to_add):
-    samples_to_add = [] if samples_to_add == '' else [c.strip() for c in samples_to_add.split(',')]
-    df = assnake.api.loaders.load_df_from_db(df)
-    ss = assnake.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
+def fastqc_start(config, **kwargs):
+    wc_str = config['wc_config']['fastqc_zip_wc']
 
-    click.echo(tabulate(ss.samples_pd[['fs_name', 'reads', 'preproc']].sort_values('reads'), 
-        headers='keys', tablefmt='fancy_grid'))
-    res_list = ss.get_locs_for_result('fastqc')
-    if config.get('requests', None) is None:
-        config['requests'] = res_list
-    else:
-        config['requests'] += res_list
+    sample_set, sample_set_name = generic_command_individual_samples(config,  **kwargs)
+
+    kwargs.update({'strand': 'R1'})
+    config['requests'] += generate_result_list(sample_set, wc_str, **kwargs)
+    kwargs['strand'] = 'R2'
+    config['requests'] += generate_result_list(sample_set, wc_str, **kwargs)
