@@ -18,7 +18,7 @@ import click
 def fastqc_start(config, df, preproc, samples_to_add):
     samples_to_add = [] if samples_to_add == '' else [c.strip() for c in samples_to_add.split(',')]
     df = assnake.api.loaders.load_df_from_db(df)
-    ss = assnake.SampleSet.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
+    ss = assnake.SampleSet(df['fs_prefix'], df['df'], preproc, samples_to_add=samples_to_add)
 
     click.echo(tabulate(ss.samples_pd[['fs_name', 'reads', 'preproc']].sort_values('reads'), 
         headers='keys', tablefmt='fancy_grid'))

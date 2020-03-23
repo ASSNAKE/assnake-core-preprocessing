@@ -1,14 +1,14 @@
 rule fastq_dump:
     input: 
-        sample     = '{prefix}/{df}/reads/sra/{sample}/{sample}.download'
+        sample     = '{fs_prefix}/{df}/reads/sra/{sample}.download'
     output:
-        r1         = '{prefix}/{df}/reads/sra/{sample}/{sample}_R1.fastq.gz',
-        r2         = '{prefix}/{df}/reads/sra/{sample}/{sample}_R2.fastq.gz'
+        r1         = '{fs_prefix}/{df}/reads/sra/{sample}_R1.fastq.gz',
+        r2         = '{fs_prefix}/{df}/reads/sra/{sample}_R2.fastq.gz'
     params: 
-        out_folder = '{prefix}/{df}/reads/sra/{sample}/',
-        r1         = '{prefix}/{df}/reads/sra/{sample}/{sample}_1.fastq.gz',
-        r2         = '{prefix}/{df}/reads/sra/{sample}/{sample}_2.fastq.gz'
-    log:             '{prefix}/{df}/reads/sra/{sample}/{sample}.download.log'
+        out_folder = '{fs_prefix}/{df}/reads/sra/',
+        r1         = '{fs_prefix}/{df}/reads/sra/{sample}_1.fastq.gz',
+        r2         = '{fs_prefix}/{df}/reads/sra/{sample}_2.fastq.gz'
+    log:             '{fs_prefix}/{df}/reads/sra/{sample}.download.log'
     run: 
         shell('/srv/common/bin/fastq-dump --split-files --gzip --dumpbase --skip-technical --outdir {params.out_folder} {wildcards.sample} >{log} 2>&1')
         shell('mv {params.r1} {output.r1}')
