@@ -11,7 +11,9 @@ from assnake.utils import read_yaml
 this_dir = os.path.dirname(os.path.abspath(__file__))
 snake_module = assnake.SnakeModule(name = 'assnake-core-preprocessing', 
                            install_dir = this_dir,
-                           snakefiles = ['./count/count.py', 
+                           snakefiles = [
+                               './fastq_dump/download.py',
+                               './count/count.py', 
                             './trimmomatic/trimmomatic.py',
                             './fastqc/fastqc.py',
                             './remove_human_bbmap/remove_human_bbmap.py',
