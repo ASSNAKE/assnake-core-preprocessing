@@ -7,7 +7,6 @@ rule tmtic:
         r1=wc_config['fastq_gz_tmtic_R1_wc'],
         r2=wc_config['fastq_gz_tmtic_R2_wc'],
         u =wc_config['fastq_gz_tmtic_S_wc']
-        #                       raw__tmtic_def1__cutadpt
     params:
         u1=wc_config['fastq_gz_tmtic_unpaired1_wc'],
         u2=wc_config['fastq_gz_tmtic_unpaired2_wc']
@@ -17,5 +16,3 @@ rule tmtic:
         params="[\w\d_-]+",
     conda: 'env_0.38.yaml'
     wrapper: "file://"+os.path.join(config['assnake-core-preprocessing'], 'trimmomatic/wrapper.py')
-        
-# 3:22 - start conda env installation; 4 minutes total
