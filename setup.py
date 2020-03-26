@@ -40,11 +40,22 @@ class PostInstallCommand(install):
 
 setup(
     name='assnake-core-preprocessing',
-    version='0.0.1',
+    version='0.5.2',
+    include_package_data=True,
+    license='MIT',         
+    description = 'Reads preprocessing module for assnake',   
+    author = 'Dmitry Fedorov',                  
+    author_email = 'fedorov.de@gmail.com',      
+    url = 'https://github.com/ASSNAKE/assnake-core-preprocessing',   
+    # download_url = 'https://github.com/ASSNAKE/assnake/archive/v0.8.8.tar.gz',    # I explain this later on
+    keywords = ['ILLUMINA', 'NGS', 'METAGENOMIC', 'DATA'], 
     packages=find_packages(),
     entry_points = {
         'assnake.plugins': ['assnake-core-preprocessing = assnake_core_preprocessing.snake_module_setup:snake_module']
     },
+    install_requires=[
+        'assnake'
+    ],
     cmdclass={
         'develop': PostDevelopCommand,
         'install': PostInstallCommand,

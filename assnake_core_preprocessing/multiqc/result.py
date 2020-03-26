@@ -17,15 +17,10 @@ from pathlib import Path
 
 
 def multiqc_invocation(config, strand, **kwargs):
-
     sample_sets = generic_command_dict_of_sample_sets(config,  **kwargs)
-    print(sample_sets)
     sample_set_dir_wc = '{fs_prefix}/{df}/profile/multiqc/{sample_set}/'
     result_wc = '{fs_prefix}/{df}/profile/multiqc/{sample_set}/multiqc_report_{strand}.html'
-
-    res_list = prepare_sample_set_tsv_and_get_results(sample_set_dir_wc, result_wc, df = kwargs['df'], sample_sets = sample_sets, strand = strand, overwrite = True)
-
-    print(res_list)
+    res_list = prepare_sample_set_tsv_and_get_results(sample_set_dir_wc, result_wc, df = kwargs['df'], sample_sets = sample_sets, strand = strand, overwrite = False)
     config['requests'] += res_list
 
 
