@@ -5,7 +5,7 @@
     "short_name": "fastqc",
     "description": "Quality control of your data",  
     "data_type": "mg",
-    "out_str_wc": "{prefix}/{df}/reads/{preproc}/{sample}/profile/{sample}_{strand}_fastqc.zip",
+    "out_str_wc": "{prefix}/{df}/reads/{preproc}/{df_sample}/profile/{df_sample}_{strand}_fastqc.zip",
     "json_in_to_loc_out_func": "simple",
     "params_schema": "{}",
     "tool": null,

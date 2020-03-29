@@ -17,11 +17,11 @@ rule index_bbmap:
 
 rule remove_human_bbmap:
     input:
-        r1 = '{fs_prefix}/{df}/reads/{preproc}/{sample}_R1.fastq.gz',
-        r2 = '{fs_prefix}/{df}/reads/{preproc}/{sample}_R2.fastq.gz',
+        r1 = '{fs_prefix}/{df}/reads/{preproc}/{df_sample}_R1.fastq.gz',
+        r2 = '{fs_prefix}/{df}/reads/{preproc}/{df_sample}_R2.fastq.gz',
         index = os.path.join(index_dir, 'bbmap/human/hg19_bbmask/index.done')
     output:
-        clean = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}.fastq.gz',
+        clean = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{df_sample}.fastq.gz',
     params:
         prefix    = os.path.join(index_dir, 'bbmap/human/hg19_bbmask/')
     threads: 8
@@ -32,9 +32,9 @@ rule remove_human_bbmap:
 
 rule reformat_bbmap_hum:
     input:
-        clean = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}.fastq.gz',
+        clean = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{df_sample}.fastq.gz',
     output:
-        r1 = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}_R1.fastq.gz',
-        r2 = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{sample}_R2.fastq.gz',
+        r1 = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{df_sample}_R1.fastq.gz',
+        r2 = '{fs_prefix}/{df}/reads/{preproc}__rmhum_bbmap/{df_sample}_R2.fastq.gz',
     conda: './bbmap_env.yaml'
     shell: ('''reformat.sh in={input.clean} out1={output.r1} out2={output.r2}''')
