@@ -12,7 +12,6 @@ rule fastqc:
     conda: 'env_v0.11.8.yaml'
     shell: ('''export PERL5LIB='';\nfastqc -t {threads} -o {params.out} {input} >{log} 2>&1; \n
           unzip -o {output.zipped} -d {params.out}''')
-        #save_to_db(config['task_id'], rule, str(input), str(output.zipped), 'RUN SUCCESSFUL')
 
 rule fastqc_nogroup:
     input: "{prefix}/{df}/reads/{preproc}/{sample}/{sample}_{strand}.fastq.gz"
