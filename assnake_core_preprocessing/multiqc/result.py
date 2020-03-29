@@ -3,7 +3,8 @@ from assnake.utils import read_yaml, pathizer
 import datetime
 # from assnake_core_preprocessing.utils import format_cmdinp2obj, prepare_fastqc_list_multiqc
 import click, glob, os
-from assnake.cli.cli_utils import sample_set_construction_options, add_options, generic_command_individual_samples, generate_result_list, generic_command_dict_of_sample_sets, prepare_sample_set_tsv_and_get_results
+from assnake.core.sample_set import generic_command_individual_samples, generate_result_list
+from assnake.cli.cli_utils import sample_set_construction_options, add_options
 from assnake.core.result import Result
 import os
 from pathlib import Path

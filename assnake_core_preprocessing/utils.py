@@ -21,7 +21,6 @@ def prepare_fastqc_list_multiqc(sample_setObj, strand, set_name):
             fs_prefix=fs_prefix,
             strand=strand,
             sample_set=set_name)
-        # print(sample_list)
 
         multiqc_dir = os.path.dirname(sample_list)
         if not os.path.isdir(multiqc_dir):
