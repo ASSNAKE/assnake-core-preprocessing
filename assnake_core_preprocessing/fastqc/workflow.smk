@@ -1,12 +1,13 @@
 rule fastqc:
     input: wc_config['fastq_gz_file_wc']
     output: 
-        zipped=wc_config['fastqc_zip_wc']
-    params: 
-        out="{fs_prefix}/{df}/profile/fastqc/{preproc}/{sample}/",
-        zip_out="{fs_prefix}/{df}/profile/fastqc/{preproc}/{sample}/fastqc",
+        zipped=wc_config['fastqc_zip_wc'],
         fastqc_data = wc_config['fastqc_data_wc']
-    log: "{fs_prefix}/{df}/profile/fastqc/{preproc}/{sample}/{sample}_{strand}.log"
+    params: 
+        out="{fs_prefix}/{df}/profile/fastqc/{preproc}/{fs_name}/",
+        zip_out="{fs_prefix}/{df}/profile/fastqc/{preproc}/{fs_name}/fastqc",
+        
+    log: "{fs_prefix}/{df}/profile/fastqc/{preproc}/{fs_name}/{fs_name}_{strand}.log"
     threads: 6
     conda: 'env_v0.11.8.yaml'
     shell: ('''export PERL5LIB='';\nfastqc -t {threads} -o {params.out} {input} >{log} 2>&1; \n

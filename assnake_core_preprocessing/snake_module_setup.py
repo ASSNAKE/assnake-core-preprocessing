@@ -6,7 +6,7 @@ import assnake_core_preprocessing.trimmomatic.result
 import assnake_core_preprocessing.multiqc.result
 import assnake_core_preprocessing.count.result
 from assnake_core_preprocessing.fastqc.result_fastqc import result_fastqc
-
+import assnake_core_preprocessing.bbtools.tadpole.result
 from assnake.utils import read_yaml
 
 
@@ -20,7 +20,8 @@ snake_module = assnake.SnakeModule(
         assnake_core_preprocessing.trimmomatic.result, 
         result_fastqc,
         assnake_core_preprocessing.remove_human_bbmap.result,
-        assnake_core_preprocessing.multiqc.result
+        assnake_core_preprocessing.multiqc.result,
+        assnake_core_preprocessing.bbtools.tadpole.result
     ],
 
     snakefiles = [],
