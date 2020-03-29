@@ -10,7 +10,7 @@ rule tmtic:
     params:
         u1=wc_config['fastq_gz_tmtic_unpaired1_wc'],
         u2=wc_config['fastq_gz_tmtic_unpaired2_wc']
-    log: "{fs_prefix}/{df}/reads/{preproc}__tmtic_{params}/{fs_name}.log"
+    log: "{fs_prefix}/{df}/reads/{preproc}__tmtic_{params}/{df_sample}.log"
     threads: 8
     wildcard_constraints:    
         params="[\w\d_-]+",

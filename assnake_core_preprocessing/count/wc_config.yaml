@@ -1,1 +1,1 @@
-count_wc: '{fs_prefix}/{df}/profile/count/{preproc}/{fs_name}/{fs_name}_{strand}.count' 
+count_wc: '{fs_prefix}/{df}/profile/count/{preproc}/{df_sample}/{df_sample}_{strand}.count' 

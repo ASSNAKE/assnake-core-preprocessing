@@ -6,8 +6,8 @@ def get_fastqc_files_for_multiqc(wildcards):
     sample_set_loc = '{fs_prefix}/{df}/profile/multiqc/{sample_set}/sample_set.tsv'.format(**wildcards)
     sample_set = pd.read_csv(sample_set_loc, sep = '\t')
     for s in sample_set.to_dict(orient='records'):
-        fastqc_list.append(wc_config['fastqc_data_wc'].format(df = s['df'], fs_prefix = s['fs_prefix'], fs_name = s['fs_name'], preproc = s['preproc'], strand = 'R1'))
-        fastqc_list.append(wc_config['fastqc_data_wc'].format(df = s['df'], fs_prefix = s['fs_prefix'], fs_name = s['fs_name'], preproc = s['preproc'], strand = 'R2'))
+        fastqc_list.append(wc_config['fastqc_data_wc'].format(df = s['df'], fs_prefix = s['fs_prefix'], df_sample = s['df_sample'], preproc = s['preproc'], strand = 'R1'))
+        fastqc_list.append(wc_config['fastqc_data_wc'].format(df = s['df'], fs_prefix = s['fs_prefix'], df_sample = s['df_sample'], preproc = s['preproc'], strand = 'R2'))
     return fastqc_list
 
 rule multiqc_list_from_sample_set:
@@ -19,7 +19,7 @@ rule multiqc_list_from_sample_set:
         fastqc_list = []
         sample_set = pd.read_csv(input.sample_set_loc, sep = '\t')
         for s in sample_set.to_dict(orient='records'):
-            fastqc_list.append(wc_config['fastqc_data_wc'].format(df = s['df'], fs_prefix = s['fs_prefix'], fs_name = s['fs_name'], preproc = s['preproc'], strand = wildcards.strand))
+            fastqc_list.append(wc_config['fastqc_data_wc'].format(df = s['df'], fs_prefix = s['fs_prefix'], df_sample = s['df_sample'], preproc = s['preproc'], strand = wildcards.strand))
 
         multiqc_dir = os.path.dirname(output.sample_list)
         os.makedirs(os.path.join(multiqc_dir), exist_ok = True)

@@ -11,7 +11,7 @@ parameters = []
 @add_options(sample_set_construction_options)
 @click.pass_obj
 def bbtools_tadpole_invocation(config, params, **kwargs):
-    wc_str = '{fs_prefix}/{df}/reads/{preproc}__bbtdpl_{params}/{fs_name}_R1.fastq.gz'
+    wc_str = '{fs_prefix}/{df}/reads/{preproc}__bbtdpl_{params}/{df_sample}_R1.fastq.gz'
     kwargs.update({'params': params})
     sample_set, sample_set_name = generic_command_individual_samples(config,  **kwargs)
     config['requests'] += generate_result_list(sample_set, wc_str, **kwargs)

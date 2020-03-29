@@ -5,7 +5,7 @@
     "short_name": "tmtic",
     "description": "Trim your reads based on quality scores",
     "data_type": "mg",
-    "out_str_wc": "{prefix}/{df}/reads/{preproc}__tmtic_{params}/{sample}_R1.fastq.gz",
+    "out_str_wc": "{prefix}/{df}/reads/{preproc}__tmtic_{params}/{df_sample}_R1.fastq.gz",
     "json_in_to_loc_out_func": "simple",
     "params_schema": {
         "title": "Trimmomatic parameters",

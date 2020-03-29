@@ -5,7 +5,7 @@
   "short_name": "count",
   "description": "Counts number of reads and base pairs in fastq file",  
   "data_type": "mg",
-  "out_str_wc": "{prefix}/{df}/reads/{preproc}/{sample}/profile/{sample}_{strand}.count",
+  "out_str_wc": "{prefix}/{df}/reads/{preproc}/{df_sample}/profile/{df_sample}_{strand}.count",
   "json_in_to_loc_out_func": "simple",
   "params_schema": "{}",
   "tool": null,

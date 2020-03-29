@@ -10,8 +10,8 @@ rule md5_sum_file:
 
 def get_files(wildcards):
 
-    table_wc = '{fs_prefix}/{df}/reads/{preproc}__merge/{sample}_merge.tsv'
-    r_wc_str = '{fs_prefix}/{df}/reads/{preproc}/{sample}_{strand}.fastq.gz'
+    table_wc = '{fs_prefix}/{df}/reads/{preproc}__merge/{df_sample}_merge.tsv'
+    r_wc_str = '{fs_prefix}/{df}/reads/{preproc}/{df_sample}_{strand}.fastq.gz'
 
     table = pd.read_csv(table_wc.format(fs_prefix = wildcards.fs_prefix,
                                         df = wildcards.df,
@@ -24,22 +24,22 @@ def get_files(wildcards):
         rr1.append(r_wc_str.format(fs_prefix=wildcards.fs_prefix,
                                     df=s['df'], 
                                     preproc=s['preproc'],
-                                    sample=s['fs_name'],
+                                    sample=s['df_sample'],
                                     strand='R1'))
         rr2.append(r_wc_str.format(fs_prefix=wildcards.fs_prefix,
                                     df=s['df'], 
                                     preproc=s['preproc'],
-                                    sample=s['fs_name'],
+                                    sample=s['df_sample'],
                                     strand='R2'))
     return {'F': rr1, 'R': rr2}
 
 rule merge_fastq_gz_files:
     input: 
         unpack(get_files),
-        sample_set='{fs_prefix}/{df}/reads/{preproc}__merge/{sample}_merge.tsv',
+        sample_set='{fs_prefix}/{df}/reads/{preproc}__merge/{df_sample}_merge.tsv',
     output: 
-        r1 = '{fs_prefix}/{df}/reads/{preproc}__merge/{sample}_R1.fastq.gz',
-        r2 = '{fs_prefix}/{df}/reads/{preproc}__merge/{sample}_R2.fastq.gz'
+        r1 = '{fs_prefix}/{df}/reads/{preproc}__merge/{df_sample}_R1.fastq.gz',
+        r2 = '{fs_prefix}/{df}/reads/{preproc}__merge/{df_sample}_R2.fastq.gz'
     wildcard_constraints:    
         df="[\w\d_-]+",
         preproc="[\w\d_-]+",

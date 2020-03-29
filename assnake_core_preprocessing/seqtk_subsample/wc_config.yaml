@@ -1,5 +1,5 @@
-seqtk-subsample_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{fs_name}_R1.fastq.gz'
+seqtk-subsample_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{df_sample}_R1.fastq.gz'
 
-seqtk_subsample_R1_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{fs_name}_R1.fastq.gz'
-seqtk_subsample_R2_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{fs_name}_R2.fastq.gz'
-seqtk_subsample_log_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{fs_name}.log'
+seqtk_subsample_R1_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{df_sample}_R1.fastq.gz'
+seqtk_subsample_R2_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{df_sample}_R2.fastq.gz'
+seqtk_subsample_log_wc: '{fs_prefix}/{df}/reads/{preproc}__seqtk_sbsmpl/{df_sample}.log'
