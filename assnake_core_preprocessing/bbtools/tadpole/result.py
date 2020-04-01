@@ -14,8 +14,19 @@ parameters = []
 def bbtools_tadpole_invocation(config, params, **kwargs):
     wc_str = '{fs_prefix}/{df}/reads/{preproc}__bbtdpl_{params}/{df_sample}_R1.fastq.gz'
     kwargs.update({'params': params})
-    sample_set, sample_set_name = generic_command_individual_samples(config,  **kwargs)
+    if (kwargs['df'] is None):
+        previous_requested_result = config['requested_results'][-1]
+        if previous_requested_result['preprocessing']:
+            sample_set = previous_requested_result['sample_set']
+            sample_set['preproc'] = sample_set['preproc']+'__'+previous_requested_result['preprocessing_addition']
+    else:
+        sample_set, sample_set_name = generic_command_individual_samples(config,  **kwargs)
+
+
+
     config['requests'] += generate_result_list(sample_set, wc_str, **kwargs)
+    config['requested_results'] += [{'result': 'bbtools-tadpole', 'sample_set': sample_set, 'preprocessing': True}]
+
 
 this_dir = os.path.dirname(os.path.abspath(__file__))
 result = Result.from_location(name = 'bbtools_tadpole', location = this_dir, input_type = 'illumina_sample', additional_inputs = None, invocation_command = bbtools_tadpole_invocation)

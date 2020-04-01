@@ -1,13 +1,8 @@
 import click
-from assnake.utils import read_yaml, pathizer
-import datetime
-# from assnake_core_preprocessing.utils import format_cmdinp2obj, prepare_fastqc_list_multiqc
-import click, glob, os
-from assnake.core.sample_set import generic_command_individual_samples, generate_result_list
+from assnake.core.sample_set import generic_command_dict_of_sample_sets, prepare_sample_set_tsv_and_get_results
 from assnake.cli.cli_utils import sample_set_construction_options, add_options
 from assnake.core.result import Result
 import os
-from pathlib import Path
 
 @click.command('multiqc', short_help='Forming the multiqc report')
 @add_options(sample_set_construction_options)
@@ -16,7 +11,7 @@ from pathlib import Path
 # @click.option('--set-name', '-n', help='Name of the set', default='', type=click.STRING )
 @click.pass_obj
 
-
+ 
 def multiqc_invocation(config, strand, **kwargs):
     sample_sets = generic_command_dict_of_sample_sets(config,  **kwargs)
     sample_set_dir_wc = '{fs_prefix}/{df}/profile/multiqc/{sample_set}/'

@@ -1,7 +1,7 @@
 import os, assnake
 
 import assnake_core_preprocessing.count.result
-import assnake_core_preprocessing.remove_human_bbmap.result
+import assnake_core_preprocessing.bbtools.remove_human_bbmap.result
 import assnake_core_preprocessing.trimmomatic.result
 import assnake_core_preprocessing.multiqc.result
 import assnake_core_preprocessing.count.result
@@ -21,13 +21,13 @@ snake_module = assnake.SnakeModule(
         assnake_core_preprocessing.count.result, 
         assnake_core_preprocessing.trimmomatic.result, 
         result_fastqc,
-        assnake_core_preprocessing.remove_human_bbmap.result,
+        assnake_core_preprocessing.bbtools.remove_human_bbmap.result,
         assnake_core_preprocessing.multiqc.result,
         assnake_core_preprocessing.bbtools.tadpole.result,
         assnake_core_preprocessing.seqtk_subsample.result,
         assnake_core_preprocessing.bbtools.reformat.result
     ],
 
-    snakefiles = [],
+    snakefiles = [os.path.join(this_dir, 'fastq_dump/workflow.smk')],
     invocation_commands = []
 )
