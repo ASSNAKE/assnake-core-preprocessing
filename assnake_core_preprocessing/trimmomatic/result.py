@@ -9,14 +9,10 @@ additional_options = [
         '--params', 
         help='Parameters id to use. Available parameter sets: ' + str(parameters), 
         required=False, 
-        default = 'def'
-        )
+        default = 'def')
 ]
 
-
-
 @click.command('trimmomatic', short_help='Quality based trimming')
-
 @add_options(sample_set_construction_options)
 @add_options(additional_options)
 @click.pass_obj

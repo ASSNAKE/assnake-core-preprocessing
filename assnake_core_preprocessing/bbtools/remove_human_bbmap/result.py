@@ -3,8 +3,6 @@ from assnake.core.sample_set import generic_command_individual_samples, generate
 from assnake.cli.cli_utils import sample_set_construction_options, add_options
 from assnake.core.result import Result
 
-parameters = [p.split('/')[-1].replace('.json', '') for p in glob.glob('/data11/bio/databases/ASSNAKE/params/tmtic/*.json')]
-
 @click.command('remove-human-bbmap', short_help='Quality based trimming')
 @add_options(sample_set_construction_options)
 @click.pass_obj

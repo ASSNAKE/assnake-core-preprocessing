@@ -7,7 +7,7 @@ from assnake.cli.cli_utils import sample_set_construction_options, add_options
 from assnake.core.result import Result
 parameters = []
 
-@click.command('bbtools-reformat-subsample', short_help='Tadpole')
+@click.command('bbtools-reformat-subsample', short_help='Subsample')
 @click.option('--params', help='Parameters id to use. Available parameter sets: ' + str(parameters), required=False, default = 'def')
 @add_options(sample_set_construction_options)
 @click.pass_obj
