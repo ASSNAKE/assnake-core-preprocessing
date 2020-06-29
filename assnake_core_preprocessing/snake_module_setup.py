@@ -10,7 +10,7 @@ import assnake_core_preprocessing.seqtk_subsample.result
 from assnake_core_preprocessing.fastqc.result_fastqc import result_fastqc
 import assnake_core_preprocessing.bbtools.tadpole.result
 import assnake_core_preprocessing.bbtools.reformat.result
-from assnake.utils import read_yaml
+from assnake.utils.general import read_yaml
 
 
 this_dir = os.path.dirname(os.path.abspath(__file__))

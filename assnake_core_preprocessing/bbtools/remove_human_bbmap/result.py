@@ -1,6 +1,6 @@
 import click, glob, os
 from assnake.core.sample_set import generic_command_individual_samples, generate_result_list
-from assnake.cli.cli_utils import sample_set_construction_options, add_options
+from assnake.core.command_builder import sample_set_construction_options, add_options
 from assnake.core.result import Result
 
 @click.command('remove-human-bbmap', short_help='Quality based trimming')
