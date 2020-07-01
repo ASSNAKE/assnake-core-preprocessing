@@ -1,0 +1,24 @@
+{
+    "ILLUMINACLIP": {
+      "fastaWithAdaptersEtc": "./adapters/mcp1_adapters.fa",
+      "seedMismatches": 2,
+      "palindromeClipThreshold": 3,
+      "simpleClipThreshold": 10
+    },
+    "SLIDINGWINDOW": {
+      "windowSize": 4,
+      "requiredQuality": 15
+    },
+    "MAXINFO": {},
+    "LEADING": {
+      "quality": 25
+    },
+    "TRAILING": {
+      "quality": 25
+    },
+    "CROP": {},
+    "HEADCROP": {},
+    "MINLEN": {
+      "length": 50
+    }
+}
