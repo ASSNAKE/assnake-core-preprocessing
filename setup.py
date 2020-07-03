@@ -4,7 +4,9 @@ from setuptools import setup, find_packages
 from setuptools.command.develop import develop
 from setuptools.command.install import install
 from assnake.core.config import read_assnake_instance_config
-from assnake_core_preprocessing.trimmomatic.result import params_preparation
+
+from assnake_core_preprocessing.snake_module_setup import snake_module
+
 import os, shutil
 import click
 
@@ -12,7 +14,9 @@ import click
 def prepare_params():
     instance_config = read_assnake_instance_config()
     if instance_config is not None:
-        params_preparation()
+        for result in snake_module.results:
+            if result.preset_manager is not None:
+                result.preset_manager.deploy_into_database()
 
 class PostDevelopCommand(develop):
     """Post-installation for development mode."""
