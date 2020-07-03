@@ -1,3 +1,4 @@
+multiqc_strand_file_set_dir_wc: '{fs_prefix}/{df}/profile/multiqc/{sample_set}/'
 multiqc_wc :        '{fs_prefix}/{df}/profile/multiqc/{sample_set}/multiqc_report_{strand}.html'
 sample_list_wc:     '{fs_prefix}/{df}/profile/multiqc/{sample_set}/{strand}/samples.list'
 work_dir_wc:        '{fs_prefix}/{df}/profile/multiqc/{sample_set}/{strand}/'
