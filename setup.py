@@ -3,7 +3,8 @@ from typing import Union
 from setuptools import setup, find_packages
 from setuptools.command.develop import develop
 from setuptools.command.install import install
-from assnake.utils import read_assnake_instance_config
+from assnake.core.config import read_assnake_instance_config
+from assnake_core_preprocessing.trimmomatic.result import params_preparation
 import os, shutil
 import click
 
@@ -11,15 +12,7 @@ import click
 def prepare_params():
     instance_config = read_assnake_instance_config()
     if instance_config is not None:
-        os.makedirs(os.path.join(instance_config['assnake_db'], 'params/tmtic'), exist_ok=True)
-
-        shutil.copyfile('./assnake_core_preprocessing/trimmomatic/def.json', os.path.join(config['assnake_db'], 'params/tmtic/def.json'))
-
-        dest_folder = os.path.join(instance_config['assnake_db'], 'params/tmtic/adapters')
-
-        if os.path.exists(dest_folder):
-            shutil.rmtree(dest_folder)
-        shutil.copytree('./assnake_core_preprocessing/trimmomatic/adapters', dest_folder)
+        params_preparation()
 
 class PostDevelopCommand(develop):
     """Post-installation for development mode."""
