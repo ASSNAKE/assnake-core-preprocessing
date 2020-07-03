@@ -1,39 +1,27 @@
-from typing import Union
 
 from setuptools import setup, find_packages
 from setuptools.command.develop import develop
 from setuptools.command.install import install
-from assnake.core.config import read_assnake_instance_config
 
-from assnake_core_preprocessing.snake_module_setup import snake_module
+from assnake_core_preprocessing import snake_module
 
-import os, shutil
-import click
-
-
-def prepare_params():
-    instance_config = read_assnake_instance_config()
-    if instance_config is not None:
-        for result in snake_module.results:
-            if result.preset_manager is not None:
-                result.preset_manager.deploy_into_database()
 
 class PostDevelopCommand(develop):
     """Post-installation for development mode."""
     def run(self):
-        prepare_params()
+        snake_module.deploy_module()
         develop.run(self)
 
 class PostInstallCommand(install):
     """Post-installation for installation mode."""
     def run(self):
-        prepare_params()
+        snake_module.deploy_module()
         install.run(self)
 
 
 setup(
     name='assnake-core-preprocessing',
-    version='0.6.0',
+    version='0.8.0',
     include_package_data=True,
     license='MIT',         
     description = 'Reads preprocessing module for assnake',   
@@ -44,7 +32,7 @@ setup(
     keywords = ['ILLUMINA', 'NGS', 'METAGENOMIC', 'DATA'], 
     packages=find_packages(),
     entry_points = {
-        'assnake.plugins': ['assnake-core-preprocessing = assnake_core_preprocessing.snake_module_setup:snake_module']
+        'assnake.plugins': ['assnake-core-preprocessing = assnake_core_preprocessing:snake_module']
     },
     install_requires=[
         'assnake'
