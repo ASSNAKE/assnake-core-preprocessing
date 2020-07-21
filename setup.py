@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 from setuptools.command.develop import develop
 from setuptools.command.install import install
 
-from assnake_core_preprocessing import snake_module
+from assnake_core_preprocessing.snake_module_setup import snake_module
 
 
 class PostDevelopCommand(develop):
@@ -32,7 +32,7 @@ setup(
     keywords = ['ILLUMINA', 'NGS', 'METAGENOMIC', 'DATA'], 
     packages=find_packages(),
     entry_points = {
-        'assnake.plugins': ['assnake-core-preprocessing = assnake_core_preprocessing:snake_module']
+        'assnake.plugins': ['assnake-core-preprocessing = assnake_core_preprocessing.snake_module_setup:snake_module']
     },
     install_requires=[
         'assnake'

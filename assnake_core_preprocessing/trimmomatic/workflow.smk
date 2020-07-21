@@ -11,7 +11,7 @@ rule tmtic:
         u1=wc_config['fastq_gz_tmtic_unpaired1_wc'],
         u2=wc_config['fastq_gz_tmtic_unpaired2_wc']
     log: "{fs_prefix}/{df}/reads/{preproc}__tmtic_{preset}/{df_sample}.log"
-    threads: config['assnake-core-preprocessing']['results']['trimmomatic']['threads']
+    threads: 8#config['assnake-core-preprocessing']['results']['trimmomatic']['threads']
     wildcard_constraints:    
         params="[\w\d_-]+",
     conda: 'env_0.38.yaml'
