@@ -1,6 +1,7 @@
 from snakemake.shell import shell
 import json, os
 
+
 def tmtic_params(params_loc):
     params_str = ''
     params_dict = {}
@@ -46,17 +47,27 @@ def tmtic_params(params_loc):
     return params_str
 
 param_str = tmtic_params(snakemake.input.params)
-        
-shell('''echo "start installing tmmtic"
-        trimmomatic PE -phred33 \
+
+if '{snakemake.params.dataset_type}' == 'paired-end':        
+    shell('''echo "start installing tmmtic"
+            trimmomatic PE -phred33 \
+                     -threads {snakemake.threads} \
+                     {snakemake.input.first} {snakemake.input.second} \
+                     {snakemake.output.r1} {snakemake.params.u1} \
+                     {snakemake.output.r2} {snakemake.params.u2} \
+                     {param_str} \
+             >{snakemake.log} 2>&1 && \
+             cat {snakemake.params.u1} {snakemake.params.u2} | gzip > {snakemake.output.u} 2>>{snakemake.log} && \
+             rm {snakemake.params.u1} {snakemake.params.u2} 2>>{snakemake.log}''')
+else:
+    shell('''echo "start installing tmmtic"
+        trimmomatic SE -phred33 \
                  -threads {snakemake.threads} \
-                 {snakemake.input.first} {snakemake.input.second} \
-                 {snakemake.output.r1} {snakemake.params.u1} \
-                 {snakemake.output.r2} {snakemake.params.u2} \
+                 {snakemake.input.first} \
+                 {snakemake.output.r1} \
                  {param_str} \
          >{snakemake.log} 2>&1 && \
-         cat {snakemake.params.u1} {snakemake.params.u2} | gzip > {snakemake.output.u} 2>>{snakemake.log} && \
-         rm {snakemake.params.u1} {snakemake.params.u2} 2>>{snakemake.log}''')
+         2>>{snakemake.log}''')
 
 if 'task_id' in snakemake.config.keys():
     save_to_db(config['task_id'], 'tmtic', str(input), str(log), 'RUN SUCCESSFUL')
