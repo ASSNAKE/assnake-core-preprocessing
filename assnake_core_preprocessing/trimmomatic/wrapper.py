@@ -46,24 +46,24 @@ def tmtic_params(params_loc):
     
     return params_str
 
-param_str = tmtic_params(snakemake.input.params)
+param_str = tmtic_params(snakemake.input[-1])
 
-if '{snakemake.params.dataset_type}' == 'paired-end':        
+if snakemake.params.dataset_type == 'paired-end':        
     shell('''echo "start installing tmmtic"
             trimmomatic PE -phred33 \
                      -threads {snakemake.threads} \
-                     {snakemake.input.first} {snakemake.input.second} \
+                     {snakemake.input[0]} {snakemake.input[1]} \
                      {snakemake.output.r1} {snakemake.params.u1} \
-                     {snakemake.output.r2} {snakemake.params.u2} \
+                     {snakemake.params.r2} {snakemake.params.u2} \
                      {param_str} \
              >{snakemake.log} 2>&1 && \
-             cat {snakemake.params.u1} {snakemake.params.u2} | gzip > {snakemake.output.u} 2>>{snakemake.log} && \
+             cat {snakemake.params.u1} {snakemake.params.u2} | gzip > {snakemake.params.u} 2>>{snakemake.log} && \
              rm {snakemake.params.u1} {snakemake.params.u2} 2>>{snakemake.log}''')
 else:
     shell('''echo "start installing tmmtic"
         trimmomatic SE -phred33 \
                  -threads {snakemake.threads} \
-                 {snakemake.input.first} \
+                 {snakemake.input[0]} \
                  {snakemake.output.r1} \
                  {param_str} \
          >{snakemake.log} 2>&1 && \
