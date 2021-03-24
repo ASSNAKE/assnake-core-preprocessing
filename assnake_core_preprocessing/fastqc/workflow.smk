@@ -10,7 +10,7 @@ rule fastqc:
     log: "{fs_prefix}/{df}/profile/fastqc/{preproc}/{df_sample}/{df_sample}_{strand}.log"
     threads: 6
     conda: 'env_v0.11.8.yaml'
-    shell: ('''export PERL5LIB='';\nfastqc -t {threads} -o {params.out} {input} >{log} 2>&1; \n
+    shell: ('''export PERL5LIB='';\nfastqc -t {threads} --nogroup -o {params.out} {input} >{log} 2>&1; \n
           unzip -o {output.zipped} -d {params.out}''')
 
 rule fastqc_nogroup:

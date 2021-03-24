@@ -46,8 +46,9 @@ def tmtic_params(params_loc):
     return params_str
 
 param_str = tmtic_params(snakemake.input.params)
+print('PARAMS', param_str)
         
-shell('''echo "start installing tmmtic"
+shell('''
         trimmomatic PE -phred33 \
                  -threads {snakemake.threads} \
                  {snakemake.input.first} {snakemake.input.second} \
