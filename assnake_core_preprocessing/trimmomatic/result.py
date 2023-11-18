@@ -1,5 +1,5 @@
 import os
-from assnake.core.result import Result
+from assnake.core.Result import Result
 
 result = Result.from_location(name='trimmomatic',
                               description='Quality based trimming',

@@ -37,6 +37,6 @@ rule multiqc_fastqc:
         wd = wc_config['work_dir_wc'],
         prerep = '{fs_prefix}/{df}/profile/multiqc/{sample_set}/{strand}/multiqc_report.html'
     conda: "multiqc.yaml"
-    shell: ("export LC_ALL=en_US.UTF-8; export LANG=en_US.UTF-8; multiqc --file-list {input.sample_list} -o {params.wd}; mv {params.prerep} {output.multiqc_report}")
+    shell: ("multiqc --file-list {input.sample_list} -o {params.wd}; mv {params.prerep} {output.multiqc_report}")
 
 

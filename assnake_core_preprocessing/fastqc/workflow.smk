@@ -11,7 +11,7 @@ rule fastqc:
     threads: 6
     conda: 'env_v0.11.8.yaml'
     shell: ('''export PERL5LIB='';\nfastqc -t {threads} --nogroup -o {params.out} {input} >{log} 2>&1; \n
-          unzip -o {output.zipped} -d {params.out}''')
+          unzip -qq -o {output.zipped} -d {params.out}''')
 
 rule fastqc_nogroup:
     input: "{prefix}/{df}/reads/{preproc}/{df_sample}/{df_sample}_{strand}.fastq.gz"
@@ -24,4 +24,4 @@ rule fastqc_nogroup:
     threads: 6
     conda: 'env_v0.11.8.yaml'
     shell: ('''export PERL5LIB='';\nfastqc -t {threads} --nogroup -o {params.out} {input} >{log} 2>&1; \n
-          unzip -o {output.zipped} -d {params.zip_out}''')
+          unzip -qq -o {output.zipped} -d {params.zip_out}''')

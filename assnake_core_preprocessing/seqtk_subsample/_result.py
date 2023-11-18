@@ -1,7 +1,7 @@
 import click, glob, os
 from assnake.core.sample_set import generic_command_individual_samples, generate_result_list
-from assnake.core.command_builder import sample_set_construction_options, add_options
-from assnake.core.result import Result
+from assnake.cli.command_builder import sample_set_construction_options, add_options
+from assnake.core.Result import Result
 
 
 @click.command('seqtk-subsample', short_help='Subsample your reads')

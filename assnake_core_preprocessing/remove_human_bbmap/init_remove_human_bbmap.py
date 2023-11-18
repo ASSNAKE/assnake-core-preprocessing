@@ -1,4 +1,3 @@
-import assnake.api.loaders
 import assnake
 from tabulate import tabulate
 import click

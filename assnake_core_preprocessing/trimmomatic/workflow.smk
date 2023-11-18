@@ -2,7 +2,7 @@ rule tmtic:
     input:
         first=wc_config['fastq_gz_R1_wc'],
         second=wc_config['fastq_gz_R2_wc'],
-        params=os.path.join(config['assnake_db'], "presets/trimmomatic/{preset}.json")
+        params="{fs_prefix}/{df}/presets/trimmomatic/{preset}.json"
     output:
         r1=wc_config['fastq_gz_tmtic_R1_wc'],
         r2=wc_config['fastq_gz_tmtic_R2_wc'],
