@@ -1,4 +1,0 @@
-bbtools-reformat-subsample_wc:                    '{fs_prefix}/{df}/reads/{preproc}__bbtsbsmpl_{params}/{df_sample}_R1.fastq.gz'
-fastq_gz_bbtools-reformat-subsample_R1_wc:        '{fs_prefix}/{df}/reads/{preproc}__bbtsbsmpl_{params}/{df_sample}_R1.fastq.gz'
-fastq_gz_bbtools-reformat-subsample_R2_wc:        '{fs_prefix}/{df}/reads/{preproc}__bbtsbsmpl_{params}/{df_sample}_R2.fastq.gz'
-fastq_gz_bbtools-reformat-subsample_log_wc:       '{fs_prefix}/{df}/reads/{preproc}__bbtsbsmpl_{params}/{df_sample}.log'
